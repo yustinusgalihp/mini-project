@@ -64,8 +64,8 @@ function SideBar() {
           </div>
         </div>
         <div className="flex justify-between">
-          <Input className="border-2 rounded-md"/>
-          <Button className="bg-[#F9B572] px-2 justify-end items-center font-semibold">Reedem Voucher</Button>
+          <Input className="border-2 rounded-md" type="text"/>
+          <Button className="bg-[#F9B572] px-2 justify-end items-center font-semibold" type="submit" >Reedem Voucher</Button>
         </div>
         <Button
           onClick={handleSubmit}

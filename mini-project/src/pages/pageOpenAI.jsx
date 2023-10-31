@@ -5,6 +5,8 @@ import clsx from "clsx";
 import Navbar from "@/components/navbar";
 import Input from "@/components/input";
 import Button from "@/components/button";
+import PuffLoader from "react-spinners/PuffLoader";
+import { useTitle } from "@/utils/hook/hooks";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEYS,
@@ -15,6 +17,15 @@ export default function PageOpenAi() {
   const [prompt, setPrompt] = useState("");
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  useTitle("Q&A");
 
   useEffect(() => {
     fetchData();
@@ -68,45 +79,55 @@ export default function PageOpenAi() {
   };
   return (
     <div>
-      <Navbar />
-      <div className="py-16">
-        <h1 className="text-2xl font-bold text-center py-6">Q&A</h1>
-      </div>
-      <div className="container">
-        <div className="grow flex flex-col overflow-auto">
-          {results.map((result) => (
-            <p
-              className={clsx(
-                "border rounded-xl p-3 mb-4 w-fit",
-                result.message.role === "assistant" ? "self-start" : "self-end"
-              )}
-              key={result.message.content}
-            >
-              {result.message.content}
-            </p>
-          ))}
+      {loading ? (
+        <div className="flex items-center justify-center w-full h-full my-96">
+          <PuffLoader color="#36d7b7" size={100} />
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center h-screen mx-auto"
-        >
-          <Input
-            className="border-2 rounded-md w-4/5 p-4 "
-            placeholder="Insert prompt"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-          />
-          <Button
-            className="border-2 rounded-md p-4 bg-[#99B080]"
-            label={isLoading ? "Loading" : "Submit"}
-            type="submit"
-            disabled={isLoading}
-            aria-disabled={isLoading}
-          >
-            Submit
-          </Button>
-        </form>
-      </div>
+      ) : (
+        <div>
+          <Navbar />
+          <div className="py-16">
+            <h1 className="text-2xl font-bold text-center py-6">Q&A</h1>
+          </div>
+          <div className="container">
+            <div className="grow flex flex-col overflow-auto">
+              {results.map((result) => (
+                <p
+                  className={clsx(
+                    "border rounded-xl p-3 mb-4 w-fit",
+                    result.message.role === "assistant"
+                      ? "self-start"
+                      : "self-end"
+                  )}
+                  key={result.message.content}
+                >
+                  {result.message.content}
+                </p>
+              ))}
+            </div>
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center h-screen mx-auto"
+            >
+              <Input
+                className="border-2 rounded-md w-4/5 p-4 "
+                placeholder="Insert prompt"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+              />
+              <Button
+                className="border-2 rounded-md p-4 bg-[#99B080]"
+                label={isLoading ? "Loading" : "Submit"}
+                type="submit"
+                disabled={isLoading}
+                aria-disabled={isLoading}
+              >
+                Submit
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
