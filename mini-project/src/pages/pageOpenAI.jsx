@@ -93,7 +93,7 @@ export default function PageOpenAi() {
               {results.map((result) => (
                 <p
                   className={clsx(
-                    "border rounded-xl p-3 mb-4 w-fit",
+                    "border rounded-xl p-3 mb-4 w-fit bg-[#99B080]",
                     result.message.role === "assistant"
                       ? "self-start"
                       : "self-end"
@@ -109,7 +109,7 @@ export default function PageOpenAi() {
               className="flex items-center h-screen mx-auto"
             >
               <input
-                className="border-2 rounded-md w-full p-4"
+                className="rounded-md w-full p-4"
                 placeholder="Insert prompt"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}

@@ -10,11 +10,11 @@ const ProductShop = ({ product }) => {
   const { id, rating, name, roaster, price, image } = product;
   return (
     <div>
-      <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
+      <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition rounded-2xl">
         <div className="w-full h-full flex justify-center items-center ">
-          <div className="w-[200px] mx-auto flex justify-center items-center">
+          <div className="w-[200px] mx-auto flex justify-center items-center ">
             <img
-              className="max-h-[160px] group-hover:scale-110 transition duration-300"
+              className="max-h-[160px] group-hover:scale-110 transition duration-300 rounded-2xl"
               src={image}
               alt=""
             />
@@ -22,13 +22,13 @@ const ProductShop = ({ product }) => {
           <div>
             <Button className="absolute top-6 -right-11 group-hover:right-5 text-black p-2 flex flex-col items-center justify-center gap-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
               <Button onClick={() => addCart(product, id)}>
-                <div className="flex justify-center items-center w-12 h-12 bg-red-500">
+                <div className="flex justify-center items-center w-12 h-12 hover:bg-[#F9B572]">
                   <BsPlus className="text-3xl" />
                 </div>
               </Button>
               <Link
                 to={`/product/${id}`}
-                className="w-12 h-12 bg- flex bg-[#F9B572] justify-center items-center"
+                className="w-12 h-12 bg- flex hover:bg-[#F9B572] justify-center items-center"
               >
                 <BsEyeFill />
               </Link>

@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <div
       className={`${
-        isActive ? "bg-[#FAF8ED] shadow-md" : "bg-[#99B080]"
+        isActive ? "bg-[#99B080] shadow-md" : "bg-[#99B080]"
       } fixed w-full z-10 transition-all`}
     >
       <div className="flex p-4 justify-between font-body font-semibold text-lg container">
@@ -77,18 +77,18 @@ export default function Navbar() {
           )}
         </div>
         <div>
-          <ul className="flex space-x-6">
-            <li className="hover:bg-[#B2533E] p-2 rounded">
+          <ul className="flex space-x-9 items-center">
+            <li className="p-2">
               <a href="/" className="text-black hover:text-white">
                 Home
               </a>
             </li>
-            <li className="hover:bg-[#B2533E] p-2 rounded">
+            <li className="p-2">
               <a href="/openai" className="text-black hover:text-white">
-                Service
+                Q&A
               </a>
             </li>
-            <li className="hover:bg-[#B2533E] p-2 rounded">
+            <li className="p-2 rounded">
               <a
                 href="/product"
                 className="text-black hover:text-white transition-all"
