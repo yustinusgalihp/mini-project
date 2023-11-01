@@ -20,7 +20,7 @@ function Header() {
             </p>
             <div className="mt-4">
               <button className="bg-[#99B080] text-black hover:bg-[#FAF8ED] hover:text-black text-lg font-body py-2 px-4 rounded">
-                <a href="/">Get Started</a>
+                <a href="/product">Get Started</a>
               </button>
             </div>
           </div>

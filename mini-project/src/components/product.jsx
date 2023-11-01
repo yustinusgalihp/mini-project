@@ -7,14 +7,7 @@ import { CartContext } from "@/utils/context/cartContext";
 const ProductShop = ({ product }) => {
   const { addCart } = useContext(CartContext);
 
-  const {
-    id,
-    rating,
-    name,
-    roaster,
-    price,
-    image,
-  } = product;
+  const { id, rating, name, roaster, price, image } = product;
   return (
     <div>
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
@@ -27,13 +20,12 @@ const ProductShop = ({ product }) => {
             />
           </div>
           <div>
-            <Button
-              onClick={() => addCart(product, id)}
-              className="absolute top-6 -right-11 group-hover:right-5 text-black p-2 flex flex-col items-center justify-center gap-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300"
-            >
-              <div className="flex justify-center items-center w-12 h-12 bg-red-500">
-                <BsPlus className="text-3xl" />
-              </div>
+            <Button className="absolute top-6 -right-11 group-hover:right-5 text-black p-2 flex flex-col items-center justify-center gap-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <Button onClick={() => addCart(product, id)}>
+                <div className="flex justify-center items-center w-12 h-12 bg-red-500">
+                  <BsPlus className="text-3xl" />
+                </div>
+              </Button>
               <Link
                 to={`/product/${id}`}
                 className="w-12 h-12 bg- flex bg-[#F9B572] justify-center items-center"

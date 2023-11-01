@@ -3,7 +3,6 @@ import OpenAI from "openai";
 import clsx from "clsx";
 
 import Navbar from "@/components/navbar";
-import Input from "@/components/input";
 import Button from "@/components/button";
 import PuffLoader from "react-spinners/PuffLoader";
 import { useTitle } from "@/utils/hook/hooks";
@@ -109,8 +108,8 @@ export default function PageOpenAi() {
               onSubmit={handleSubmit}
               className="flex items-center h-screen mx-auto"
             >
-              <Input
-                className="border-2 rounded-md w-4/5 p-4 "
+              <input
+                className="border-2 rounded-md w-full p-4"
                 placeholder="Insert prompt"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}

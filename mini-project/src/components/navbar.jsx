@@ -6,6 +6,7 @@ import { SideBarContext } from "@/utils/context/sideBar";
 import { CartContext } from "@/utils/context/cartContext";
 import { Link } from "react-router-dom";
 import { axiosConfig } from "@/utils/api/axiosConfig";
+import { ProductContext } from "@/utils/context/productContext";
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +14,7 @@ export default function Navbar() {
   const { itemAmount } = useContext(CartContext);
   const [nameList, setNameList] = useState([]);
   const [search, setSearch] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const { products } = useContext(ProductContext);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -26,14 +27,6 @@ export default function Navbar() {
       setNameList(response.data);
     });
   }, []);
-
-  const handleSearchFocus = () => {
-    setIsSearchFocused(true);
-  };
-
-  const handleSearchBlur = () => {
-    setIsSearchFocused(false);
-  };
 
   return (
     <div
@@ -56,14 +49,12 @@ export default function Navbar() {
             type="text"
             placeholder="Search...."
             onChange={(e) => setSearch(e.target.value)}
-            onFocus={handleSearchFocus}
-            onBlur={handleSearchBlur}
           />
           <BsSearch
             className="absolute top-1.5 mt-3 ml-56  text-gray-400"
             size={20}
           />
-          {isSearchFocused && search && (
+          {search && (
             <div className="absolute mt-1 w-full bg-white shadow-lg rounded-xl max-h-36 overflow-y-auto">
               {nameList
                 .filter((data) => {
@@ -76,7 +67,11 @@ export default function Navbar() {
                   }
                 })
                 .map((data) => {
-                  return <div key={data.id}>{data.name}</div>;
+                  return (
+                    <Link to={`/product/${data.id}`} key={data.id}>
+                      <div className="hover:bg-slate-300">{data.name}</div>
+                    </Link>
+                  );
                 })}
             </div>
           )}
@@ -95,7 +90,7 @@ export default function Navbar() {
             </li>
             <li className="hover:bg-[#B2533E] p-2 rounded">
               <a
-                href="/#product"
+                href="/product"
                 className="text-black hover:text-white transition-all"
               >
                 Product

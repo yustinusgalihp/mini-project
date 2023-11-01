@@ -7,6 +7,7 @@ import {
 import LandingPage from "../pages/landingPage"
 import PageDetail from "@/pages/pageDetail";
 import PageOpenAi from "@/pages/pageOpenAI";
+import PageProduct from "@/pages/pageProduct";
 
 export default function Router() {
 
@@ -18,6 +19,10 @@ export default function Router() {
     {
       path: "/product/:id",
       element: <PageDetail/>,
+    },
+    {
+      path: "/product",
+      element: <PageProduct/>
     },
     {
       path: "/openai",

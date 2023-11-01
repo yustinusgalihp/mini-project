@@ -7,7 +7,6 @@ import { SideBarContext } from "@/utils/context/sideBar";
 import { CartContext } from "@/utils/context/cartContext";
 import Swal from "sweetalert2";
 import Button from "@/components/button";
-import Input from "@/components/input";
 
 function SideBar() {
   const { isOpen, handleClose } = useContext(SideBarContext);
@@ -23,12 +22,14 @@ function SideBar() {
       denyButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Succes!", "", "success");
+        clearCart();
+        Swal.fire("Success!", "", "success");
       } else if (result.isDenied) {
         Swal.fire("Failed!", "", "error");
       }
     });
   };
+
   return (
     <div
       className={`${
@@ -58,14 +59,19 @@ function SideBar() {
           </div>
           <div
             onClick={clearCart}
-            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+            className="cursor-pointer py-4 hover:bg-slate-500 text-black w-12 h-12 flex justify-center items-center text-xl"
           >
             <FiTrash2 />
           </div>
         </div>
         <div className="flex justify-between">
-          <Input className="border-2 rounded-md" type="text"/>
-          <Button className="bg-[#F9B572] px-2 justify-end items-center font-semibold" type="submit" >Reedem Voucher</Button>
+          <input className="border-2 rounded-md w-2/3 p-1" type="text" />
+          <Button
+            className="bg-[#F9B572] px-2 justify-end items-center font-semibold"
+            type="submit"
+          >
+            Reedem Voucher
+          </Button>
         </div>
         <Button
           onClick={handleSubmit}
